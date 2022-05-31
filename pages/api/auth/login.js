@@ -15,7 +15,7 @@ export default async function login(req, res) {
 
       const serialised = serialize("OursiteJWT", token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV !== "development",
+        // secure: process.env.NODE_ENV !== "development",
         sameSite: "strict",
         maxAge: 60 * 60 * 24 * 30,
         path: "/",
