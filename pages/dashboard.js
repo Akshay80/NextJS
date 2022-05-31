@@ -1,8 +1,27 @@
+import axios from 'axios'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import { useRouter } from 'next/router';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-export default function Home() {
+export default function Dashboard() {
+  const router = useRouter();
+  const handleLogout = async() => {
+    await axios
+    .get("/api/auth/logout")
+    .then((response) => {
+      toast.success(response.data.message+" 👋🙋‍♂️");
+      setTimeout(() => {
+        router.push("/login");
+      }, 3000);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -15,6 +34,10 @@ export default function Home() {
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
+
+        <button className="btn btn-primary" onClick={() => handleLogout()}>
+          Logout
+        </button>
 
         <p className={styles.description}>
           Get started by editing{' '}
@@ -64,6 +87,12 @@ export default function Home() {
           </span>
         </a>
       </footer>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={true}
+        limit={1}
+      />
     </div>
   )
 }
