@@ -15,7 +15,7 @@ export default function Dashboard() {
       toast.success(response.data.message+" 👋🙋‍♂️");
       setTimeout(() => {
         router.push("/login");
-      }, 3000);
+      }, 2000);
     })
     .catch((err) => {
       console.log(err);
@@ -35,7 +35,7 @@ export default function Dashboard() {
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
-        <button className="btn btn-primary" onClick={() => handleLogout()}>
+        <button className="btn btn-primary" onClick={handleLogout}>
           Logout
         </button>
 
@@ -89,7 +89,7 @@ export default function Dashboard() {
       </footer>
       <ToastContainer
         position="top-right"
-        autoClose={3000}
+        autoClose={2000}
         hideProgressBar={true}
         limit={1}
       />
